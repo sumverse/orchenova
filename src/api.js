@@ -1,5 +1,5 @@
 // ==================== Freesound API ====================
-const FREESOUND_API_KEY = "LuCKuS5ZXpprW3XRwDiVOiZemQhKYgshMpFrKnCp";
+const FREESOUND_API_KEY = import.meta.env.VITE_FREESOUND_API_KEY;
 
 // 악기 사운드 가져오기 (로컬 파일 또는 API)
 export const getInstrumentSound = async (instrument) => {
