@@ -1,0 +1,793 @@
+/* ==================== 폰트 ==================== */
+@font-face {
+  font-family: "BookkMyungjo";
+  src: url("/BookkMyungjo_Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* ==================== 전체 배경 ==================== */
+.app {
+  min-height: 100vh;
+  background: white;
+  color: white;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ==================== 헤더 ==================== */
+.header {
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* 투명 헤더에 마우스 올리면 헤더 전체가 흰색 */
+.header:not(.scrolled):hover {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header:not(.scrolled):hover .logo-text {
+  color: #1e1b4b;
+}
+
+.header:not(.scrolled):hover .nav-item {
+  color: #1e1b4b;
+}
+
+.header:not(.scrolled):hover .nav-item.active::after {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.header.scrolled .logo-text {
+  color: #1e1b4b;
+}
+
+.header.scrolled .nav-item {
+  color: #1e1b4b;
+}
+
+.header.scrolled .nav-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.header.scrolled .nav-item.active {
+  background: rgba(0, 0, 0, 0.08);
+  font-weight: 400;
+}
+
+.header.scrolled .nav-item.active::after {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: "BookkMyungjo", serif;
+  color: white;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+}
+
+.nav {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.nav-item {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 300;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 400;
+}
+
+.nav-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  transition: background 0.3s;
+}
+
+/* ==================== 악기 섹션 (공통) ==================== */
+.instruments-section {
+  margin-top: 2rem;
+}
+
+.instrument-group {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #d8b4fe;
+  margin-bottom: 1rem;
+}
+
+.instruments-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .instruments-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.instrument-btn {
+  padding: 1.5rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
+  font-weight: bold;
+}
+
+.instrument-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.instrument-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.instrument-name {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.instrument-status {
+  font-size: 0.875rem;
+}
+
+/* ==================== 버튼 ==================== */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+
+.btn-add {
+  background: #22c55e;
+  color: white;
+}
+
+.btn-add:hover {
+  background: #16a34a;
+  transform: scale(1.05);
+}
+
+.btn-play {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-play:hover {
+  background: #2563eb;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.btn-delete {
+  background: #dc2626;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #b91c1c;
+}
+
+.btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+}
+
+/* ==================== 빈 상태 ==================== */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #94a3b8;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ==================== 스크롤바 ==================== */
+.debug-logs::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.debug-logs::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.debug-logs::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.debug-logs::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ==================== 무대 배치도 ==================== */
+.stage-container {
+  text-align: center;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: #fbbf24;
+}
+
+.stage-wrapper {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+
+.stage-svg {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border: 3px solid #9333ea;
+  border-radius: 12px;
+}
+
+.instrument-circle {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.instrument-circle.ready {
+  opacity: 1;
+}
+
+.instrument-circle.loading {
+  opacity: 0.5;
+}
+
+.instrument-circle:hover {
+  filter: brightness(1.2);
+}
+
+.instrument-emoji {
+  pointer-events: none;
+  user-select: none;
+}
+
+.hint {
+  color: #d8b4fe;
+  font-size: 1rem;
+}
+
+/* ==================== 악기 목록 ==================== */
+.list-container {
+  padding: 1rem;
+}
+
+/* ==================== 퀴즈 페이지 ==================== */
+.quiz-start-container {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.quiz-description {
+  font-size: 1.125rem;
+  color: #e9d5ff;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.quiz-container {
+  padding: 1rem;
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.quiz-header .page-title {
+  margin: 0;
+}
+
+.quiz-score {
+  font-size: 1.25rem;
+  color: #fbbf24;
+  font-weight: bold;
+}
+
+.quiz-question-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.quiz-question-text {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #e9d5ff;
+}
+
+.quiz-choice.correct {
+  animation: correctPulse 0.5s;
+}
+
+.quiz-choice.incorrect {
+  animation: incorrectShake 0.5s;
+}
+
+@keyframes correctPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes incorrectShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+/* ==================== 모달 ==================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #1e1b4b, #581c87);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  border: 3px solid #9333ea;
+  text-align: center;
+  animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-emoji {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #fbbf24;
+}
+
+.modal-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(147, 51, 234, 0.3);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  color: #c084fc;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.modal-description {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #e9d5ff;
+}
+
+.modal-play-btn {
+  margin-top: 1rem;
+}
+
+/* ==================== 반응형 ==================== */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .logo-text {
+    font-size: 1.2rem;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-item {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .instruments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quiz-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ==================== 홈페이지 ==================== */
+.home-page {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  background: white;
+}
+
+/* 전체 화면 배경 비디오 */
+.video-background {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+  margin: 0;
+  padding: 0;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* 흰색 컨텐츠 섹션들 */
+.content-sections {
+  background: white;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.about-section,
+.features-section-white,
+.info-section {
+  padding: 6rem 2rem;
+  width: 100%;
+}
+
+.about-section {
+  background: linear-gradient(to bottom, #f8f9fa, white);
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  justify-content: space-between;
+}
+
+.about-title {
+  font-size: 4rem;
+  font-weight: bold;
+  font-family: "BookkMyungjo", serif;
+  color: #6b7280;
+  letter-spacing: 0.02em;
+  font-style: italic;
+  flex-shrink: 0;
+  min-width: 300px;
+}
+
+.about-text {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #4b5563;
+  flex: 1;
+}
+
+.features-section-white {
+  background: white;
+}
+
+.info-section {
+  background: linear-gradient(to bottom, white, #f8f9fa);
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: "BookkMyungjo", serif;
+  color: #1e1b4b;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-text {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #4b5563;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 기능 카드 (흰색 배경용) */
+.features-grid-white {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature-card-white {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card-white:hover {
+  transform: translateY(-10px);
+  border-color: #9333ea;
+  box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
+}
+
+.feature-icon-white {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-title-white {
+  font-size: 1.5rem;
+  color: #1e1b4b;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.feature-description-white {
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* 정보 카드 */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.info-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid #9333ea;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.info-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 4px 16px rgba(147, 51, 234, 0.2);
+}
+
+.info-card h3 {
+  font-size: 1.25rem;
+  color: #9333ea;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+}
+
+.info-card p {
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .about-section,
+  .features-section-white,
+  .info-section {
+    padding: 4rem 1rem;
+  }
+
+  .about-content {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .about-title {
+    font-size: 3rem;
+    min-width: auto;
+  }
+
+  .about-text {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-text {
+    font-size: 1.1rem;
+  }
+
+  .features-grid-white,
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
